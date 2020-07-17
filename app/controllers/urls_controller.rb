@@ -10,7 +10,7 @@ class UrlsController < ApplicationController
   def create
     @url = Url.new(params[:url].permit(:text))
     @url.shortened_text = generate_url
-    @url.expires_on = Time.now
+    @url.expires_on = 7.days.from_now
 
     if @url.save
       redirect_to action: "show", id: @url.shortened_text
