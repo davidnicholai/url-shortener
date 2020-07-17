@@ -1,6 +1,6 @@
 class UrlsController < ApplicationController
   def index
-    @url = Url.new
+    redirect_to "/urls/new"
   end
 
   def new
@@ -15,7 +15,7 @@ class UrlsController < ApplicationController
     if @url.save
       redirect_to action: "show", id: @url.shortened_text
     else
-      render "home#index"
+      render "new"
     end
   end
 
@@ -42,5 +42,4 @@ class UrlsController < ApplicationController
         return short_link
       end
     end
-
 end
