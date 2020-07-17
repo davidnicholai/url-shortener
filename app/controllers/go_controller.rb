@@ -1,13 +1,16 @@
 class GoController < ApplicationController
   def show
-    # Add security here
+    start_time = Time.now
 
     url = Url.find_by shortened_text: params[:id]
 
-    if url && url.expires_on < DateTime.now
-      redirect_to url.text
+    end_time = Time.now
+
+    if url && url.expires_on > DateTime.now
+      @elapsed_time = "Retrieval took #{end_time - start_time} seconds"
+      @link = url.text
     else
-      redirect_to not_found
+      display_page_not_found
     end
   end
 end

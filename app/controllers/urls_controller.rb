@@ -22,13 +22,13 @@ class UrlsController < ApplicationController
   def show
     @url = Url.find_by shortened_text: params[:id]
 
-    @hostname = "#{request.host}:#{request.port}"
+    @hostname = "#{request.protocol}#{request.host}:#{request.port}"
 
     if @url&.visited == false
       @url.visited = true
       @url.save
     else
-      redirect_to not_found
+      display_page_not_found
     end
   end
 

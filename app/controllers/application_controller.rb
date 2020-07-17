@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  def not_found
-    raise ActionController::RoutingError.new('Not Found')
+  def display_page_not_found
+    render file: "#{Rails.root}/public/404.html", layout: false, status:404
   end
 end

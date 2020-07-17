@@ -31,4 +31,5 @@ Things you may want to cover:
 - Took a break at 11am. Resumed at 12
 - 12:30 to 1: Asked Boggs about indexing
 - 1:00 to 1:30: Implemented half of the requirements. Will cook lunch. Resumed at 2:30
-- 2:30pm to 6pm: Implemented most of the requirements, with support for tests.
+- 2:30pm to 6pm: Implemented all required requirements, with support for tests. Total of 5 hours.
+- 6:00 to 7pm: Added not found and polished some of the behavior (removed /go/ endpoint)
