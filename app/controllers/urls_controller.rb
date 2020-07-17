@@ -8,17 +8,17 @@ class UrlsController < ApplicationController
   end
 
   def create
-    url = Url.new(url_params)
-    url.slug = Url.generate_url
+    @url = Url.new(url_params)
+    @url.slug = Url.generate_url
 
-    new_url = "#{request.protocol}#{request.host_with_port}/#{url.slug}"
+    new_url = "#{request.protocol}#{request.host_with_port}/#{@url.slug}"
 
-    if url.save
+    if @url.save
       # Flashes the new_url to the user.
       redirect_to "/urls/new", notice: new_url
     else
       # Display the same page, but this time it'll carry errors.
-      render "new"
+      render "new", status: 400
     end
   end
 
