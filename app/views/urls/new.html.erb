@@ -1,0 +1,5 @@
+<%= form_with scope: :url, url: urls_path, local: true do |form| %>
+  <%= form.text_field :text, placeholder: "Link" %>
+
+  <%= form.submit "Generate Link" %>
+<% end %>
