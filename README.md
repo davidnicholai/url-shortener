@@ -30,4 +30,5 @@ Things you may want to cover:
 - Started working at 10am
 - Took a break at 11am. Resumed at 12
 - 12:30 to 1: Asked Boggs about indexing
-- 1:00 to 1:30: Implemented half of the stuff. Will cook lunch. Resumed at 2:30
+- 1:00 to 1:30: Implemented half of the requirements. Will cook lunch. Resumed at 2:30
+- 2:30pm to 6pm: Implemented most of the requirements, with support for tests.
