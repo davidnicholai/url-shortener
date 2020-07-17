@@ -1,3 +1,15 @@
 class Url < ApplicationRecord
-  validates :text, presence: true, url: true
+  validates :original_url, presence: true, url: true
+
+  def self.generate_url
+    generated_slug = Digest::MD5.hexdigest "#{SecureRandom.uuid}#{DateTime.now.to_s}"
+
+    generated_slug = generated_slug[0, 5]
+
+    if Url.find_by slug: generated_slug
+      generate_url
+    else
+      generated_slug
+    end
+  end
 end

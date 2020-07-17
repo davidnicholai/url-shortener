@@ -8,38 +8,32 @@ class UrlsController < ApplicationController
   end
 
   def create
-    @url = Url.new(params[:url].permit(:text))
-    @url.shortened_text = generate_url
-    @url.expires_on = 7.days.from_now
+    url = Url.new(url_params)
+    url.slug = Url.generate_url
 
-    if @url.save
-      redirect_to action: "show", id: @url.shortened_text
+    new_url = "#{request.protocol}#{request.host_with_port}/#{url.slug}"
+
+    if url.save
+      # Flashes the new_url to the user.
+      redirect_to "/urls/new", notice: new_url
     else
+      # Display the same page, but this time it'll carry errors.
       render "new"
     end
   end
 
   def show
-    @url = Url.find_by shortened_text: params[:id]
+    url = Url.find_by slug: params[:id]
 
-    @hostname = "#{request.protocol}#{request.host}:#{request.port}"
-
-    if @url&.visited == false
-      @url.visited = true
-      @url.save
+    if url && url.created_at + 7.days > DateTime.now
+      redirect_to url.original_url
     else
       display_page_not_found
     end
   end
 
   private
-    def generate_url
-      short_link = ([*('A'..'Z'),*('0'..'9'),*('a'..'z')]-%w(0 1 I O)).sample(5).join
-
-      if Url.find_by shortened_text: short_link
-        return generate_url
-      else
-        return short_link
-      end
+    def url_params
+      params[:url].permit(:original_url)
     end
 end

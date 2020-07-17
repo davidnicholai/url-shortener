@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_071034) do
+ActiveRecord::Schema.define(version: 2020_07_17_012655) do
 
   create_table "urls", force: :cascade do |t|
-    t.string "text"
-    t.string "shortened_text"
-    t.datetime "expires_on"
+    t.string "slug"
+    t.string "original_url"
+    t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "visited", default: false
-    t.index ["shortened_text"], name: "index_urls_on_shortened_text"
+    t.index ["slug"], name: "index_urls_on_slug"
   end
 
 end

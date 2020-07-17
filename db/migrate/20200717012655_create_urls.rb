@@ -1,11 +1,13 @@
 class CreateUrls < ActiveRecord::Migration[6.0]
   def change
     create_table :urls do |t|
-      t.string :text
-      t.string :shortened_text
-      t.datetime :expires_on
+      t.string :slug
+      t.string :original_url
+      t.boolean :active, default: true
 
       t.timestamps
     end
+
+    add_index :urls, :slug
   end
 end

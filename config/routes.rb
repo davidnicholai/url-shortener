@@ -4,5 +4,5 @@ Rails.application.routes.draw do
 
   root 'urls#new'
 
-  match '*id' => 'go#show', via: :get
+  match '*id' => 'urls#show', via: :get
 end

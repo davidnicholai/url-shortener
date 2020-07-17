@@ -8,13 +8,13 @@ class UrlTest < ActiveSupport::TestCase
 
   test "should not save url with invalid link" do
     url = Url.new
-    url.text = "hello i am not a legitimate url"
+    url.original_url = "hello i am not a legitimate url"
     assert_not url.save, "saved url with invalid link"
   end
 
   test "should save url with valid link" do
     url = Url.new
-    url.text = "http://thisismyurl.com"
+    url.original_url = "http://thisismyurl.com"
     assert url.save, "could not save url with valid link"
   end
 end
