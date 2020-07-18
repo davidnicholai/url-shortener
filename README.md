@@ -19,7 +19,7 @@
 - 9:00 to 10pm: Optimized code and rewrote tests. Total of 8 hours for required features.
 - 10:30 to 11:30pm: Dockerizing the repo
 - 11:00am to 12:00pm: Introduced user authentication (register, login, logout)
-- Saturday 11:00am to 4:pm: Added admin panel, soft delete, hard delete, referer, ip address, and click count.
+- Saturday 11:00am to 4:00pm: Added admin panel, soft delete, hard delete, referer, ip address, and click count.
 - Somewhere around 7pm I was trying to see why my click statistics were doubling and was doing a final run of my tests before submitting.
 
 Total: ~ 15 hours.
