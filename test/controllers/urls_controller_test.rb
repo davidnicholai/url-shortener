@@ -17,7 +17,7 @@ class UrlsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     post '/urls',
-      params: { url: { original_url: 'foobarbaz' } }
+      params: { url: { original_url: '' } }
     follow_redirect!
     assert flash[:alert], "no flash alert"
   end
