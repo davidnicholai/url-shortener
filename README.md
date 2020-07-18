@@ -13,3 +13,4 @@
 - 6:00 to 7pm: Added page not found and polished some of the behavior (removed /go/ endpoint and made the shortened URLs look more appealing. From /go/ABC12 to /ABC12)
 - 9:00 to 10pm: Optimized code and rewrote tests.
 - 10:30 to 11:30pm: Dockerizing the repo
+- 11:00am to 12:00pm: Introduced user authentication (register, login, logout)

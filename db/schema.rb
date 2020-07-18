@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_012655) do
+ActiveRecord::Schema.define(version: 2020_07_18_035734) do
 
   create_table "urls", force: :cascade do |t|
     t.string "slug"
@@ -18,7 +18,17 @@ ActiveRecord::Schema.define(version: 2020_07_17_012655) do
     t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
     t.index ["slug"], name: "index_urls_on_slug"
+    t.index ["user_id"], name: "index_urls_on_user_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "urls", "users"
 end
