@@ -6,7 +6,7 @@
 <%= form_with scope: :url, url: urls_path, local: true do |form| %>
 
   <% if @url.errors.any? %>
-    <ul style="list-style-type: none">
+    <ul style='list-style-type: none'>
       <% @url.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
@@ -15,7 +15,7 @@
 
   <br>
 
-  <%= form.text_field :original_url, placeholder: "Link" %>
+  <%= form.text_field :original_url, placeholder: 'Link' %>
 
-  <%= form.submit "Generate Link" %>
+  <%= form.submit 'Generate Link' %>
 <% end %>

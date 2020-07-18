@@ -1,10 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_action :authorized, only: [:new, :create, :welcome]
 
-  def new
-  end
-
-  # Log in
+  # Log in / Create new session
   def create
     @user = User.find_by(username: params[:username])
 
@@ -16,17 +13,16 @@ class SessionsController < ApplicationController
     end
   end
 
-  def login
-  end
-
   def welcome
     @url = Url.new
 
     if logged_in?
+      # Gives the user's shortened URLs
       @urls = Url.where(user_id: session[:user_id])
     end
   end
 
+  # Log out
   def destroy
     if logged_in?
       session[:user_id] = nil

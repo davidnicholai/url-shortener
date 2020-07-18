@@ -11,12 +11,12 @@ class UrlsController < ApplicationController
 
     new_url = "#{request.protocol}#{request.host_with_port}/#{@url.slug}"
 
-    if @url.save!
+    if @url.save
       # Flashes the new_url to the user.
-      redirect_to "/", notice: new_url
+      redirect_to '/', notice: new_url
     else
       # Display the same page, but this time it'll carry errors.
-      render "sessions/welcome", status: 400
+      redirect_to 'sessions/welcome', status: 400
     end
   end
 
@@ -25,9 +25,7 @@ class UrlsController < ApplicationController
 
     if url&.active && url.created_at + 7.days > DateTime.now
       statistic = Statistic.new
-
       statistic.url_id = url.id
-
       # Sanitized at model-level
       statistic.referer = request.referer
       statistic.ip_address = request.remote_ip
@@ -41,6 +39,7 @@ class UrlsController < ApplicationController
     end
   end
 
+  # Disables a link
   def update
     @url = Url.find(params[:id])
 
@@ -49,9 +48,10 @@ class UrlsController < ApplicationController
       @url.save
     end
 
-    redirect_to "/"
+    redirect_to '/'
   end
 
+  # Permanently deletes a link
   def destroy
     @url = Url.find(params[:id])
 
@@ -59,7 +59,7 @@ class UrlsController < ApplicationController
       @url.destroy
     end
 
-    redirect_to "/"
+    redirect_to '/'
   end
 
   private

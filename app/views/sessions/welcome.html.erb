@@ -2,22 +2,20 @@
 <% if logged_in? %>
 
   <h1>Hi <%= current_user.username %></h1>
-  <%= button_to "Logout", '/logout', method: :post %>
+  <%= button_to 'Logout', '/logout', method: :post %>
 
 <% else %>
 
-  <%= button_to "Login", '/login', method: :get %>
-  <%= button_to "Sign Up", '/users/new', method: :get %>
+  <%= button_to 'Login', '/login', method: :get %>
+  <%= button_to 'Sign Up', '/users/new', method: :get %>
 
 <% end %>
-
-<!-- URLs section -->
 
 <!-- Displays a generated slug if there's one available. -->
 <% unless flash.notice.nil? %>
 <span>
   Here's your new URL:&nbsp;
-  <a href="<%= flash.notice %>">
+  <a href='<%= flash.notice %>'>
     <%= "#{flash.notice}" %>
   </a>
 </span>
@@ -25,10 +23,11 @@
 
 <br>
 
+<!-- URL form -->
 <%= form_with scope: :url, url: urls_path, local: true do |form| %>
 
   <% if @url.errors.any? %>
-    <ul style="list-style-type: none">
+    <ul style='list-style-type: none'>
       <% @url.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
@@ -37,13 +36,14 @@
 
   <br>
 
-  <%= form.text_field :original_url, placeholder: "Link" %>
+  <%= form.text_field :original_url, placeholder: 'Link' %>
 
-  <%= form.submit "Generate Link" %>
+  <%= form.submit 'Generate Link' %>
 <% end %>
 
 <br>
 
+<!-- Lists down all URLs the user made -->
 <% if logged_in? %>
   <table border=1>
     <tr>
@@ -57,7 +57,7 @@
     <% @urls&.each do |url| %>
     <tr>
       <td>
-        <%= url.original_url %>
+        <b><%= url.original_url %></b>
         <br>
         <% url.statistics&.each do |statistic| %>
           <span><%= statistic.referer %></span>
@@ -66,16 +66,16 @@
           <br>
         <% end %>
       </td>
-      <td><a href="/<%= url.slug %>"><%= url.slug %></a></td>
+      <td><a href='/<%= url.slug %>'><%= url.slug %></a></td>
       <td><%= url.statistics.count %></td>
       <td>
         <% if url.active %>
-        <%= button_to "Disable", "urls/#{url.id}", method: :patch %>
+        <%= button_to 'Disable', "urls/#{url.id}", method: :patch %>
         <% else %>
-        <%= button_to "Enable", "urls/#{url.id}", method: :patch %>
+        <%= button_to 'Enable', "urls/#{url.id}", method: :patch %>
         <% end %>
       </td>
-      <td><%= button_to "Delete", "urls/#{url.id}", method: :delete %></td>
+      <td><%= button_to 'Delete', "urls/#{url.id}", method: :delete %></td>
     </tr>
     <% end %>
 
