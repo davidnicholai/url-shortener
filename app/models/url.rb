@@ -7,6 +7,7 @@ class Url < ApplicationRecord
 
     generated_slug = generated_slug[0, 5]
 
+    # If slug exists, generate a new slug.
     if Url.find_by slug: generated_slug
       generate_url
     else

@@ -14,9 +14,16 @@
 <!-- URLs section -->
 
 <!-- Displays a generated slug if there's one available. -->
-<a href="<%= flash.notice %>">
-  <%= "#{flash.notice}" %>
-</a>
+<% unless flash.notice.nil? %>
+<span>
+  Here's your new URL:&nbsp;
+  <a href="<%= flash.notice %>">
+    <%= "#{flash.notice}" %>
+  </a>
+</span>
+<% end %>
+
+<br>
 
 <%= form_with scope: :url, url: urls_path, local: true do |form| %>
 

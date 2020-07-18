@@ -1,12 +1,5 @@
 class UrlsController < ApplicationController
-  # def index
-  #   redirect_to "/" 
-  # end
-
-  # def new
-  #   @url = Url.new
-  #   redirect_to "/" 
-  # end
+  skip_before_action :authorized, only: [:create, :show]
 
   def create
     @url = Url.new(url_params)
@@ -18,7 +11,7 @@ class UrlsController < ApplicationController
 
     new_url = "#{request.protocol}#{request.host_with_port}/#{@url.slug}"
 
-    if @url.save
+    if @url.save!
       # Flashes the new_url to the user.
       redirect_to "/", notice: new_url
     else
