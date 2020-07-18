@@ -16,7 +16,7 @@
 <span>
   Here's your new URL:&nbsp;
   <a href='<%= flash.notice %>'>
-    <%= "#{flash.notice}" %>
+    <%= flash.notice %>
   </a>
 </span>
 <% end %>
@@ -25,19 +25,15 @@
 
 <!-- URL form -->
 <%= form_with scope: :url, url: urls_path, local: true do |form| %>
-
-  <% if @url.errors.any? %>
-    <ul style='list-style-type: none'>
-      <% @url.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    <ul>
+  <% if flash[:alert] %>
+    <% flash[:alert].each do |msg| %>
+    <span><%= msg %></span><br>
+    <% end %>
   <% end %>
 
   <br>
 
   <%= form.text_field :original_url, placeholder: 'Link' %>
-
   <%= form.submit 'Generate Link' %>
 <% end %>
 

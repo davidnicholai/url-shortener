@@ -3,7 +3,7 @@ class Url < ApplicationRecord
   has_many :statistics, dependent: :delete_all
 
   def self.generate_url
-    generated_slug = Digest::MD5.hexdigest "#{SecureRandom.uuid}#{DateTime.now.to_s}"
+    generated_slug = Digest::MD5.hexdigest "#{SecureRandom.uuid}#{DateTime.now}"
 
     generated_slug = generated_slug[0, 5]
 
