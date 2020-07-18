@@ -1,11 +1,12 @@
 class UrlsController < ApplicationController
-  def index
-    redirect_to "/" 
-  end
+  # def index
+  #   redirect_to "/" 
+  # end
 
-  def new
-    @url = Url.new
-  end
+  # def new
+  #   @url = Url.new
+  #   redirect_to "/" 
+  # end
 
   def create
     @url = Url.new(url_params)
@@ -30,6 +31,17 @@ class UrlsController < ApplicationController
     url = Url.find_by slug: params[:id]
 
     if url&.active && url.created_at + 7.days > DateTime.now
+      statistic = Statistic.new
+
+      statistic.url_id = url.id
+
+      # Sanitized at model-level
+      statistic.referer = request.referer
+      statistic.ip_address = request.remote_ip
+      statistic.save
+
+      # For some reason the show controller is visited twice (hence two counts).
+      # Will look into it at a later time.
       redirect_to url.original_url
     else
       display_page_not_found

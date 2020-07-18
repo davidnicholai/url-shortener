@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_18_035734) do
+ActiveRecord::Schema.define(version: 2020_07_18_052712) do
+
+  create_table "statistics", force: :cascade do |t|
+    t.string "ip_address"
+    t.string "referer"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "url_id"
+    t.index ["url_id"], name: "index_statistics_on_url_id"
+  end
 
   create_table "urls", force: :cascade do |t|
     t.string "slug"

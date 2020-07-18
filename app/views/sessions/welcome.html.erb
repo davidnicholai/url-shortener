@@ -42,14 +42,26 @@
     <tr>
       <th>Link</th>
       <th>Slug</th>
+      <th>Clicks</th>
       <th>Disable</th>
       <th>Delete</th>
+      <th>Max Clicks</th>
     </tr>
 
     <% @urls&.each do |url| %>
     <tr>
-      <td><%= url.original_url %></td>
-      <td><%= url.slug %></td>
+      <td>
+        <%= url.original_url %>
+        <br>
+        <% url.statistics&.each do |statistic| %>
+          <span><%= statistic.referer %></span>
+          <span>&nbsp;</span>
+          <span><%= statistic.ip_address %></span>
+          <br>
+        <% end %>
+      </td>
+      <td><a href="/<%= url.slug %>"><%= url.slug %></a></td>
+      <td><%= url.statistics.count %></td>
       <td>
         <% if url.active %>
         <%= button_to "Disable", "urls/#{url.id}", method: :patch %>
@@ -58,6 +70,13 @@
         <% end %>
       </td>
       <td><%= button_to "Delete", "urls/#{url.id}", method: :delete %></td>
+      <!-- Max clicks row -->
+      <td>
+        <%= form_tag '/' method: :update do %>
+        <%= text_field_tag :max_clicks %>
+        <%= submit_tag "Delete" %>
+        <% end %>
+      </td>
     </tr>
     <% end %>
 
