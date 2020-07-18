@@ -8,6 +8,7 @@ RUN apt update \
   && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
   && apt install -y nodejs \
   && npm install -g yarn \
+  && yarn install \
   && bundle install \
   && bundle exec rails db:create db:migrate
 
