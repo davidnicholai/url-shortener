@@ -3,6 +3,14 @@
 - Run `docker compose up`
 - Navigate to localhost:3000
 
+# Running tests
+Either run `bundle exec rails test` in the docker container, or:
+
+To run in your machine:
+- `bundle install`
+- `yarn install`
+- `bundle exec rails test
+
 ## Notes
 
 - I chose to go with Ruby on Rails for the following reasons: it's good for rapid prototyping (fast support for CRUD), easy to setup & dockerize, basic familiarity
